@@ -147,11 +147,11 @@ class Person extends CI_Controller
 
     public function delete_benef()
     {
-        $donneur_id = $this->input->post('donneur_id');
+        $benef_id = $this->input->post('benef_id');
 
-        $this->Crud->delete_data('person',['id'=>$donneur_id]);
+        $this->Crud->delete_data('person',['id'=>$benef_id]);
 
-        $this->session->set_flashdata(['donneur_deleted'=>true]);
-        redirect('person/donneur');
+        $this->session->set_flashdata(['beneficiaire_deleted'=>true]);
+        redirect('person/beneficiaire');
     }   
 }

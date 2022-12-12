@@ -56,24 +56,47 @@ class Don extends CI_Controller
             $this->load->view('layout/admin/js');
         }else{
 
-            $this->db->trans_start();
+            $donneur_id = $this->input->post('donneur_id');
+            $groupe_id = $this->input->post('groupe_id');
 
-            $data = array(
-                'date' => date('d-m-Y H:i',time()),
-                'donneur_id' => $this->input->post('donneur_id'),
-                'groupe_id' => $this->input->post('groupe_id'),
-                'produit_sanguin_id' => $this->input->post('produit_sanguin_id'),
-                'quantite' => $this->input->post('quantite'),                
-            );
-            
-            //insertion du don
-            $this->Crud->add_data('don',$data);
+            if($this->check_groupe($donneur_id,$groupe_id))
+            {
+                $data = array(
+                    'date' => date('d-m-Y H:i',time()),
+                    'donneur_id' => $donneur_id,
+                    'groupe_id' => $groupe_id,
+                    'produit_sanguin_id' => $this->input->post('produit_sanguin_id'),
+                    'quantite' => $this->input->post('quantite'),                
+                );
+                
+                //insertion du don
+                $this->Crud->add_data('don',$data);
+    
+                $this->session->set_flashdata(['don_saved'=>true]);
+                redirect('don/index');
+            }else{
+                $this->session->set_flashdata(['don_failed'=>true]);
+                redirect('don/new_don');
+            }            
+        }
+    }
 
-            //===--Fin transition--===
-			$this->db->trans_commit();
+    public function check_groupe($donneur_id,$groupe_id)
+    {
+        $donneur_groupe = $this->Crud->get_data('person',['id'=>$donneur_id]);
 
-            $this->session->set_flashdata(['don_saved'=>true]);
-            redirect('don/index');
+        if(count($donneur_groupe) >=1)
+        {
+            $donneur_groupe_id = $donneur_groupe[0]->groupe_id;
+        }else{
+            $donneur_groupe_id = null;
+        }
+
+        if($donneur_groupe_id == $groupe_id)
+        {
+            return true;
+        }else{
+            return false;
         }
     }
 

@@ -46,13 +46,13 @@
                     <h6><b>Voici la liste des personnes ayant beneficié des produits sanguins au moins une fois dans le centre</b></h6>
                 </div>
                 <div class="col-md-3 offset-md-3">
-                    <a href="<?=site_url('person/new_benef')?>" class="btn btn-secondary"><i class="zmdi zmdi-plus zmdi-hc-fw"></i> Nouveau beneficiaire</a>
+                    <a href="<?=site_url('person/new_benef')?>" class="btn btn-outline-dark"><i class="zmdi zmdi-plus zmdi-hc-fw"></i> Nouveau beneficiaire</a>
                 </div>
             </div>
         </header>
             <div class="table-responsive">
-                <table id="data-table" class="table table-bordered">
-                    <thead class="thead-default">
+                <table id="data-table" class="table table-borderd table-striped">
+                    <thead class="thead-default alert alert-danger text-white">
                         <tr>
                             <th style="width: 20px;">No</th>
                             <th>Nom complet</th>                         
@@ -89,10 +89,10 @@
                                     <td style="text-align: center;"><?=$age?> ans</td>
                                     <td style="text-align: center;"><?=$b->groupe?></td>
                                     <td>
-                                        <button class="btn btn-success btn--raised"><i class="zmdi zmdi-edit zmdi-hc-fw"></i></button>
+                                        <button class="btn btn-successs btn--raised"><i class="zmdi zmdi-edit zmdi-hc-fw"></i></button>
                                         <form id="form-delete" onclick='javascript:confirmation($(this));return false;'action="<?=site_url("person/delete_benef")?>" method="post" style="float:right;">                                
                                             <input type="hidden" value="<?=$b->id?>" name="benef_id">
-                                            <button id="delete" class="btn btn-danger btn--raised" title="Delete">
+                                            <button id="delete" class="btn btn-light btn--raised" title="Delete">
                                                 <i class="zmdi zmdi-delete zmdi-hc-fw"></i>
                                             </button>
                                         </form>                                                                                 

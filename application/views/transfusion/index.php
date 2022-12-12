@@ -46,21 +46,21 @@
                     <h6><b>Voici la liste de toutes les transfusions enregistrées dans le système</b></h6>
                 </div>
                 <div class="col-md-3 offset-md-3">
-                    <a href="<?=site_url('transfusion/new_transfusion')?>" class="btn btn-secondary"><i class="zmdi zmdi-plus zmdi-hc-fw"></i> Nouvelle transfusion</a>
+                    <a href="<?=site_url('transfusion/new_transfusion')?>" class="btn btn-outline-dark"><i class="zmdi zmdi-plus zmdi-hc-fw"></i> Nouvelle transfusion</a>
                 </div>
             </div>
         </header>
             <div class="table-responsive">
-                <table id="data-table" class="table table-bordered table-hover">
-                    <thead class="thead-default">
+                <table id="data-table" class="table table-borderd table-striped table-hover">
+                    <thead class="thead-default alert alert-danger text-white">
                         <tr>
                             <th style="width: 20px;">No</th>
                             <th>Date</th>                         
-                            <th>Donneur</th>
+                            <th>Beneficiaire</th>
                             <th>Produit sanguin</th>
                             <th>Groupe</th>
                             <th>Quantite</th>
-                            <th style="width: 180px;">Actions</th>
+                            <th>Actions</th>
                         </tr>
                     </thead>                    
                     <tbody id="t-body">
@@ -78,10 +78,10 @@
                                     <td style="text-align: center;"><?=$t->groupe?></td>
                                     <td style="text-align: center;"><?=$t->quantite?> littres</td>
                                     <td>
-                                        <button class="btn btn-success btn--raised"><i class="zmdi zmdi-edit zmdi-hc-fw"></i></button>
-                                        <form id="form-delete" onclick='javascript:confirmation($(this));return false;'action="<?=site_url("don/delete_don")?>" method="post" style="float:right;">                                
-                                            <input type="hidden" value="<?=$t->id?>" name="don_id">
-                                            <button id="delete" class="btn btn-danger btn--raised" title="Delete">
+                                        <!-- <button class="btn btn-light btn--raised"><i class="zmdi zmdi-edit zmdi-hc-fw"></i></button> -->
+                                        <form id="form-delete" onclick='javascript:confirmation($(this));return false;'action="<?=site_url("transfusion/delete_transfusion")?>" method="post"">                                
+                                            <input type="hidden" value="<?=$t->id?>" name="transfusion_id">
+                                            <button id="delete" class="btn btn-light btn--raised" title="Delete">
                                                 <i class="zmdi zmdi-delete zmdi-hc-fw"></i>
                                             </button>
                                         </form>                                                                                 

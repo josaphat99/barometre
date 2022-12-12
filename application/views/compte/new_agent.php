@@ -62,7 +62,7 @@
                     <div class="row">
                         <div class="col-md-12 text-center">
                             <p id="error_connexion" class="text-red animated fadeInUp" hidden>Please give all the informations needed!!</p>
-                            <button class="btn btn-outline-primary btn-lg" style="border-radius:5px;" id="submit" type="submit">Ajouter</button>
+                            <button class="btn btn-outline-danger btn-lg" style="border-radius:5px;" id="submit" type="submit">Ajouter</button>
                         </div>  
                     </div>
                 </div>

@@ -2,7 +2,7 @@
     <div class="scrollbar-inner">
         <div class="user">
             <div class="user__info" data-toggle="dropdown">
-                <img class="user__img" src="<?=base_url('assets/demo/img/profile-pics/2.jpg')?>" alt="">
+                <img class="user__img" src="<?=base_url('assets/demo/img/profile-pics/4.jpg')?>" alt="">
                 <div>
                     <div class="user__name"><?=$this->session->nomcomplet?></div>
                     <div class="user__email"><?=$this->session->email?></div>

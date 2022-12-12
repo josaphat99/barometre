@@ -1,3 +1,18 @@
+<?php
+    if(($this->session->don_failed))
+    {
+?>
+        <script>
+            Swal.fire({            
+            icon: 'warning',
+            title: 'Le groupe selectioné ne correspond pas à celui du donneur selectioné',
+            showConfirmButton: true,
+            timer: 30000
+            })
+        </script>
+<?php
+    }
+?>
 <section class="content">
     <header class="content__title">
         <h1 class="animated"><b>Nouveau don</b></h1>
@@ -80,7 +95,7 @@
                     <div class="row">
                         <div class="col-md-12 text-center">
                             <p id="error_connexion" class="text-red animated fadeInUp" hidden>Veuillez remplir tous les champs svp!</p>
-                            <button class="btn btn-outline-primary btn-lg" style="border-radius:5px;" id="submit" type="submit">Ajouter</button>
+                            <button class="btn btn-outline-danger btn-lg" style="border-radius:5px;" id="submit" type="submit">Ajouter</button>
                         </div>  
                     </div>
                 </div>

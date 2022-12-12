@@ -51,8 +51,8 @@
             </div>
         </header>
             <div class="table-responsive">
-                <table id="data-table" class="table table-bordered">
-                    <thead class="thead-default">
+                <table id="data-table" class="table table-bordere table-striped">
+                    <thead class="thead-default alert alert-danger text-white">
                         <tr>
                             <th style="width: 180px;">No</th>
                             <th>Nom complet</th>                         
@@ -72,11 +72,11 @@
                                     <td style="text-align: center;"><?=$a->adresse?></td>
                                     <td style="text-align: center;"><?=$a->phone?></td>
                                     <td>
-                                        <button class="btn btn-success btn--raised"><i class="zmdi zmdi-edit zmdi-hc-fw"></i></button>
+                                        <button class="btn btn-light btn--raised"><i class="zmdi zmdi-edit zmdi-hc-fw"></i></button>
                                         <form id="form-delete" onclick='javascript:confirmation($(this));return false;'action="<?=site_url("compte/delete_agent")?>" method="post" style="float:right;">                                
                                             <input type="hidden" value="<?=$a->id?>" name="agent_account_id">
                                             <input type="hidden" value="<?=$a->person_id?>" name="agent_person_id">
-                                            <button id="delete" class="btn btn-danger btn--raised" title="Delete">
+                                            <button id="delete" class="btn btn-light btn--raised" title="Delete">
                                                 <i class="zmdi zmdi-delete zmdi-hc-fw"></i>
                                             </button>
                                         </form>                                                                                 
@@ -104,19 +104,19 @@
     function confirmation(anchor)
     {
         Swal.fire({
-        title: 'Do you realy want to delete this test?',
-        text: "You won't be able to undo this!",
+        title: 'Voulez-vous vraiement supprimer cet agent?',
+        text: "vous pourrez plus le recuperer!",
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
-        confirmButtonText: 'Delete',
-        cancelButtonText: 'Cancel',
+        confirmButtonText: 'Supprimer',
+        cancelButtonText: 'Annuler',
         }).then((result) => {
             if (result.value) {
                 Swal.fire(
-                'Deleted!',
-                'Test deleted.',
+                'Supprimé!',
+                'Agent supprimé.',
                 'success'
                 )
                 anchor.submit();

@@ -33,7 +33,7 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="card animated zoomIn">
-                                            <div class="card-body bg-primary">
+                                            <div class="card-body bg-danger">
                                                 <div class="col-9 col-md-8 col-sm-5 col-xs-5  offset-2 offset-md-2 offset-sm-4">
                                                     <h1 class="text-center text-white">CPTS</h1>
                                                 </div>  
@@ -61,15 +61,14 @@
                                         <span class="animated fadeIn" style="color:red" id="password_error" hidden>
                                             Veuillez saisir votre mot de passe!!
                                         </span>                                   
-                                    </div>
-                                    
+                                    </div>                                    
                                 </div>
                                
                                 <div class="row">
                                     <div class="col-md-12 text-center">
                                         <p id="error_connexion" class="text-red animated fadeInUp" hidden>Please give all the informations needed!!</p>                                        
                                         <p style="color:red"><?=$this->session->error_login?></p>
-                                        <button class="bg-primary" id="subtn_login" type="submit">Se connecter</button>
+                                        <button class="bg-secondary" id="subtn_login" type="submit">Se connecter</button>
                                     </div>  
                                 </div>
                             </div>

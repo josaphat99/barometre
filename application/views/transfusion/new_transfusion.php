@@ -1,3 +1,19 @@
+<?php
+    if(($this->session->transfusion_failed))
+    {
+?>
+        <script>
+            Swal.fire({            
+            icon: 'warning',
+            title: 'La quantité specifiée est superieure à la quantité disponible pour ce produit dans ce groupe',
+            showConfirmButton: true,
+            timer: 30000
+            })
+        </script>
+<?php
+    }
+?>
+
 <section class="content">
     <header class="content__title">
         <h1 class="animated"><b>Nouvelle transfusion</b></h1>
@@ -80,7 +96,7 @@
                     <div class="row">
                         <div class="col-md-12 text-center">
                             <p id="error_connexion" class="text-red animated fadeInUp" hidden>Veuillez remplir tous les champs svp!</p>
-                            <button class="btn btn-outline-primary btn-lg" style="border-radius:5px;" id="submit" type="submit">Ajouter</button>
+                            <button class="btn btn-outline-danger btn-lg" style="border-radius:5px;" id="submit" type="submit">Enregistrer</button>
                         </div>  
                     </div>
                 </div>

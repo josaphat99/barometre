@@ -46,13 +46,13 @@
                     <h6><b>Voici la liste de tous les dons enregistrés dans le système</b></h6>
                 </div>
                 <div class="col-md-3 offset-md-3">
-                    <a href="<?=site_url('don/new_don')?>" class="btn btn-secondary"><i class="zmdi zmdi-plus zmdi-hc-fw"></i> Nouveau don</a>
+                    <a href="<?=site_url('don/new_don')?>" class="btn btn-outline-dark"><i class="zmdi zmdi-plus zmdi-hc-fw"></i> Nouveau don</a>
                 </div>
             </div>
         </header>
             <div class="table-responsive">
-                <table id="data-table" class="table table-bordered table-hover">
-                    <thead class="thead-default">
+                <table id="data-table" class="table table-bordere table-striped table-hover">
+                    <thead class="thead-default alert alert-danger text-white">
                         <tr>
                             <th style="width: 20px;">No</th>
                             <th>Date</th>                         
@@ -60,7 +60,7 @@
                             <th>Produit sanguin</th>
                             <th>Groupe</th>
                             <th>Quantite</th>
-                            <th style="width: 180px;">Actions</th>
+                            <th>Actions</th>
                         </tr>
                     </thead>                    
                     <tbody id="t-body">
@@ -77,11 +77,11 @@
                                     <td style="text-align: center;"><?=$d->produit_sanguin?></td>
                                     <td style="text-align: center;"><?=$d->groupe?></td>
                                     <td style="text-align: center;"><?=$d->quantite?> littres</td>
-                                    <td>
-                                        <button class="btn btn-success btn--raised"><i class="zmdi zmdi-edit zmdi-hc-fw"></i></button>
-                                        <form id="form-delete" onclick='javascript:confirmation($(this));return false;'action="<?=site_url("don/delete_don")?>" method="post" style="float:right;">                                
+                                    <td class="text-center">
+                                        <!-- <button class="btn btn-light btn--raised"><i class="zmdi zmdi-edit zmdi-hc-fw"></i></button> -->
+                                        <form id="form-delete" onclick='javascript:confirmation($(this));return false;'action="<?=site_url("don/delete_don")?>" method="post">                                
                                             <input type="hidden" value="<?=$d->id?>" name="don_id">
-                                            <button id="delete" class="btn btn-danger btn--raised" title="Delete">
+                                            <button id="delete" class="btn btn-light btn--raised" title="Delete">
                                                 <i class="zmdi zmdi-delete zmdi-hc-fw"></i>
                                             </button>
                                         </form>                                                                                 

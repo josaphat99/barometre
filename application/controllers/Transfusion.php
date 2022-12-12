@@ -56,34 +56,74 @@ class Transfusion extends CI_Controller
             $this->load->view('layout/admin/js');
         }else{
 
-            $this->db->trans_start();
+            $groupe_id = $this->input->post('groupe_id');
+            $produit_sanguin_id = $this->input->post('produit_sanguin_id');
+            $quantite = $this->input->post('quantite');
+            $quantite_dispo = $this->get_quantite_produit($groupe_id,$produit_sanguin_id);
 
-            $data = array(
-                'date' => date('d-m-Y H:i',time()),
-                'person_id' => $this->input->post('beneficiaire_id'),
-                'groupe_id' => $this->input->post('groupe_id'),
-                'produit_sanguin_id' => $this->input->post('produit_sanguin_id'),
-                'quantite' => $this->input->post('quantite'),                
-            );
-            
-            //insertion de la transfusion
-            $this->Crud->add_data('transfusion',$data);
+            if($quantite <= $quantite_dispo)
+            {
+                $data = array(
+                    'date' => date('d-m-Y H:i',time()),
+                    'person_id' => $this->input->post('beneficiaire_id'),
+                    'groupe_id' => $groupe_id,
+                    'produit_sanguin_id' => $produit_sanguin_id,
+                    'quantite' => $quantite,                
+                );
+                
+                //insertion de la transfusion
+                $this->Crud->add_data('transfusion',$data);
 
-            //===--Fin transition--===
-			$this->db->trans_commit();
-
-            $this->session->set_flashdata(['transfusion_saved'=>true]);
-            redirect('transfusion/index');
+                $this->session->set_flashdata(['transfusion_saved'=>true]);
+                redirect('transfusion/index');
+            }else{
+                $this->session->set_flashdata(['transfusion_failed'=>true]);
+                redirect('transfusion/new_transfusion');
+            }                        
         }
     }
 
-    public function delete_don()
+    private function get_quantite_produit($groupe_id,$produit_sanguin_id)
     {
-        $don_id = $this->input->post('don_id');
+        $don = $this->Crud->get_data('don',['groupe_id'=>$groupe_id,'produit_sanguin_id'=>$produit_sanguin_id]);
+        $trans = $this->Crud->get_data('transfusion',['groupe_id'=>$groupe_id,'produit_sanguin_id'=>$produit_sanguin_id]);
 
-        $this->Crud->delete_data('don',['id'=>$don_id]);
+        if(count($don) >= 1)
+        {
+           $quantite_don = 0;
+            
+            foreach ($don as $d)
+            {
+                $quantite_don = $quantite_don + $d->quantite;
+            }
+        }else{
+            $quantite_don = 0;
+        }
 
-        $this->session->set_flashdata(['don_deleted'=>true]);
-        redirect('don/index');
+        if(count($trans) >= 1)
+        {
+            $quantite_trans = 0;
+            
+            foreach ($trans as $t)
+            {
+                $quantite_trans = $quantite_trans + $t->quantite;
+            }
+        }else{
+            $quantite_trans = 0;
+        }
+
+        $quantite = $quantite_don - $quantite_trans;
+
+        return $quantite;
+    }
+
+    public function delete_transfusion()
+    {
+        $t_id = $this->input->post('transfusion_id');
+
+        $this->Crud->delete_data('transfusion',['id'=>$t_id]);
+
+        $this->session->set_flashdata(['transfusion_deleted'=>true]);
+        redirect('transfusion/index');
     }
 }
